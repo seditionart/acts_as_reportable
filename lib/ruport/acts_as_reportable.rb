@@ -163,7 +163,8 @@ module Ruport
           options[:include] = get_include_for_find(includes)
         end
         
-        data = [find(number, options)].flatten
+        #rewritten for Rails 4
+        data = joins(options[:include].keys).where(options[:conditions]).order(options[:order])
         data = data.map {|r| r.reportable_data(:include => includes,
                                :only => only,
                                :except => except,
