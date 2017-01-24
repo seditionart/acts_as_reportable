@@ -164,7 +164,7 @@ module Ruport
         end
         
         #rewritten for Rails 4
-        data = joins(options[:include].keys).where(options[:conditions]).order(options[:order])
+        data = joins(options[:include]).where(options[:conditions]).order(options[:order])
         data = data.map {|r| r.reportable_data(:include => includes,
                                :only => only,
                                :except => except,
